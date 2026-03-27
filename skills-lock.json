@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "himalaya": {
+      "source": "steipete/clawdis",
+      "sourceType": "github",
+      "computedHash": "0d3baf6039b8f2d19266ec535b114cacca8a6ab1d288b8373a83b1a1585cefb8"
+    }
+  }
+}

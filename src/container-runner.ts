@@ -89,6 +89,20 @@ function buildVolumeMounts(
       });
     }
 
+    // Mount himalaya email config (read-only) if it exists on host
+    const himalayaConfigDir = path.join(
+      process.env.HOME || '/root',
+      '.config',
+      'himalaya',
+    );
+    if (fs.existsSync(himalayaConfigDir)) {
+      mounts.push({
+        hostPath: himalayaConfigDir,
+        containerPath: '/home/node/.config/himalaya',
+        readonly: true,
+      });
+    }
+
     // Main also gets its group folder as the working directory
     mounts.push({
       hostPath: groupDir,

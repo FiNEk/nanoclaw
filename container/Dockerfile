@@ -33,6 +33,13 @@ ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium
 # Install agent-browser and claude-code globally
 RUN npm install -g agent-browser @anthropic-ai/claude-code
 
+# Install himalaya email CLI (pre-built binary from GitHub releases)
+ARG TARGETARCH
+RUN ARCH=$(case "${TARGETARCH}" in "arm64") echo "aarch64";; *) echo "x86_64";; esac) && \
+    curl -fsSL "https://github.com/pimalaya/himalaya/releases/download/v1.2.0/himalaya.${ARCH}-linux.tgz" \
+    | tar -xz -C /usr/local/bin himalaya && \
+    chmod +x /usr/local/bin/himalaya
+
 # Create app directory
 WORKDIR /app
 
